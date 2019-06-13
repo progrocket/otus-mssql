@@ -1,5 +1,5 @@
 -- 3. Вывести сумму продаж, дату первой продажи и количество проданного по месяцам, по товарам, продажи которых менее 50 ед в месяц. 
-SELECT MONTH(i.InvoiceDate) AS [MonthNumber], 
+SELECT CAST(YEAR(i.InvoiceDate) AS VARCHAR(4)) + '-' + CAST(MONTH(i.InvoiceDate) AS VARCHAR(2)) AS [MonthNumber], 
        il.StockItemID AS [StockItemId], 
        SUM(il.Quantity * il.UnitPrice) AS [Total], 
        MIN(i.InvoiceDate) AS [FistSale], 
@@ -11,8 +11,6 @@ SELECT MONTH(i.InvoiceDate) AS [MonthNumber],
        END AS [Note]
 FROM Sales.InvoiceLines il
      INNER JOIN Sales.Invoices i ON il.InvoiceID = i.InvoiceID
-GROUP BY ROLLUP(MONTH(i.InvoiceDate), il.StockItemID)
-HAVING(SUM(il.Quantity) < 50)
-      OR (GROUPING(MONTH(i.InvoiceDate)) = 1
-          OR GROUPING(il.StockItemID) = 1)
+GROUP BY ROLLUP(YEAR(i.InvoiceDate), MONTH(i.InvoiceDate), il.StockItemID)
+HAVING SUM(il.Quantity) < 50
 ORDER BY [MonthNumber], il.StockItemID;
