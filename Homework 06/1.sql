@@ -24,7 +24,7 @@ FROM Sales.Invoices i
 INNER JOIN Sales.Customers c ON c.CustomerID = i.CustomerID
 INNER JOIN Sales.InvoiceLines il ON il.InvoiceID = i.InvoiceID
 WHERE i.InvoiceDate >= '20150101' AND i.InvoiceDate < '20160101'
-ORDER BY i.InvoiceDate, i.CUstomerID;
+ORDER BY i.InvoiceDate, i.CustomerID;
 
 
 -- Second version
@@ -53,5 +53,5 @@ SELECT i.InvoiceID,
 FROM Sales.Invoices AS i
     INNER JOIN Sales.Customers c ON i.CustomerID = c.CustomerID
     INNER JOIN Sales.InvoiceLines il ON i.InvoiceID = il.InvoiceID
-WHERE InvoiceDate >= '20150101' AND i.InvoiceDate < '20160101'
+WHERE i.InvoiceDate >= '20150101' AND i.InvoiceDate < '20160101'
 ORDER BY i.InvoiceDate, i.CUstomerID;
