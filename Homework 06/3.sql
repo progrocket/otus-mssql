@@ -15,8 +15,8 @@ SELECT si.StockItemID,
     ROW_NUMBER() OVER(PARTITION BY LEFT(si.StockItemName, 1) ORDER BY si.StockItemName) [NumbererFirstChar], 
     COUNT(*) OVER() [TotalCount], 
     COUNT(*) OVER(PARTITION BY LEFT(si.StockItemName, 1)) [TotalCountFirstChar], 
-    LEAD(StockItemID) OVER(ORDER BY si.StockItemName) [NextId], 
-    LAG(StockItemID) OVER(ORDER BY si.StockItemName) [PrevId], 
+    LEAD(si.StockItemID) OVER(ORDER BY si.StockItemName) [NextId], 
+    LAG(si.StockItemID) OVER(ORDER BY si.StockItemName) [PrevId], 
     LAG(si.StockItemName, 2, 'No items') OVER(ORDER BY si.StockItemName) [Prevx2Name],
     NTILE(30) OVER(ORDER BY si.TypicalWeightPerUnit) [GroupWeight]
 FROM Warehouse.StockItems si
