@@ -19,8 +19,7 @@ SELECT
 	, c.CustomerName AS [CustomerName]
 	, i.InvoiceDate AS [InvoiceDate]
 	, SUM(il.Quantity * il.UnitPrice) OVER (PARTITION BY i.InvoiceID) [OrderSum]
-	, SUM(il.Quantity * il.UnitPrice) 
-		OVER(ORDER BY DATEPART(YEAR, i.InvoiceDate), DATEPART(MONTH, i.InvoiceDate)) [CumulativeTotal]
+	, SUM(il.Quantity * il.UnitPrice) OVER (ORDER BY DATEPART(YEAR, i.InvoiceDate), DATEPART(MONTH, i.InvoiceDate)) [CumulativeTotal]
 FROM Sales.Invoices i
 INNER JOIN Sales.Customers c ON c.CustomerID = i.CustomerID
 INNER JOIN Sales.InvoiceLines il ON il.InvoiceID = i.InvoiceID
@@ -37,8 +36,8 @@ ORDER BY i.InvoiceDate, i.CUstomerID;
 -- Время работы SQL Server:
 --   Время ЦП = 17219 мс, затраченное время = 17569 мс.
 SELECT i.InvoiceID, 
-       c.CustomerName, 
-       i.InvoiceDate, 
+    c.CustomerName, 
+    i.InvoiceDate, 
 (
     SELECT SUM(il.Quantity * il.UnitPrice)
     FROM Sales.InvoiceLines AS il
@@ -47,12 +46,12 @@ SELECT i.InvoiceID,
 (
     SELECT SUM(il2.Quantity * il2.UnitPrice)
     FROM Sales.InvoiceLines AS il2
-         INNER JOIN Sales.Invoices AS i2 ON il2.InvoiceID = i2.InvoiceID
+        INNER JOIN Sales.Invoices AS i2 ON il2.InvoiceID = i2.InvoiceID
     WHERE i2.InvoiceDate <= EOMONTH(i.InvoiceDate)
-          AND i2.InvoiceDate >= '20150101' AND i2.InvoiceDate < '20160101'
+        AND i2.InvoiceDate >= '20150101' AND i2.InvoiceDate < '20160101'
 ) [CumulativeTotal]
 FROM Sales.Invoices AS i
-     INNER JOIN Sales.Customers c ON i.CustomerID = c.CustomerID
-     INNER JOIN Sales.InvoiceLines il ON i.InvoiceID = il.InvoiceID
+    INNER JOIN Sales.Customers c ON i.CustomerID = c.CustomerID
+    INNER JOIN Sales.InvoiceLines il ON i.InvoiceID = il.InvoiceID
 WHERE InvoiceDate >= '20150101' AND i.InvoiceDate < '20160101'
 ORDER BY i.InvoiceDate, i.CUstomerID;
