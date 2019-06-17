@@ -45,9 +45,9 @@ SELECT i.InvoiceID,
     WHERE il.InvoiceID = i.InvoiceID
 ) AS [OrderSum], 
 (
-    SELECT SUM(il.Quantity * il.UnitPrice)
-    FROM Sales.InvoiceLines AS il
-         INNER JOIN Sales.Invoices AS i2 ON il.InvoiceID = i2.InvoiceID
+    SELECT SUM(il2.Quantity * il2.UnitPrice)
+    FROM Sales.InvoiceLines AS il2
+         INNER JOIN Sales.Invoices AS i2 ON il2.InvoiceID = i2.InvoiceID
     WHERE i2.InvoiceDate <= EOMONTH(i.InvoiceDate)
           AND i2.InvoiceDate >= '20150101' AND i2.InvoiceDate < '20160101'
 ) [CumulativeTotal]
