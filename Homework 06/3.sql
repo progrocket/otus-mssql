@@ -10,19 +10,14 @@
 --Для этой задачи НЕ нужно писать аналог без аналитических функций
 
 SELECT si.StockItemID, 
-       si.StockItemName, 
-       si.Brand, 
-       ROW_NUMBER() OVER(PARTITION BY LEFT(si.StockItemName, 1)
-       ORDER BY si.StockItemName) [Нумерация с группировкой по первой букве], 
-       COUNT(*) OVER() [TotalCount], 
-       COUNT(*) OVER(PARTITION BY LEFT(si.StockItemName, 1)) [TotalCountFirstChar], 
-       LEAD(StockItemID) OVER(
-       ORDER BY si.StockItemName) [NextId], 
-       LAG(StockItemID) OVER(
-       ORDER BY si.StockItemName) [PrevId], 
-       ISNULL(LAG(si.StockItemName, 2) OVER(
-       ORDER BY si.StockItemName), 'No items') [Prevx2Name], 
-       NTILE(30) OVER(
-       ORDER BY si.TypicalWeightPerUnit) [GroupWeight]
+    si.StockItemName, 
+    si.Brand, 
+    ROW_NUMBER() OVER(PARTITION BY LEFT(si.StockItemName, 1) ORDER BY si.StockItemName) [NumbererFirstChar], 
+    COUNT(*) OVER() [TotalCount], 
+    COUNT(*) OVER(PARTITION BY LEFT(si.StockItemName, 1)) [TotalCountFirstChar], 
+    LEAD(StockItemID) OVER(ORDER BY si.StockItemName) [NextId], 
+    LAG(StockItemID) OVER(ORDER BY si.StockItemName) [PrevId], 
+    ISNULL(LAG(si.StockItemName, 2) OVER(ORDER BY si.StockItemName), 'No items') [Prevx2Name],
+    NTILE(30) OVER(ORDER BY si.TypicalWeightPerUnit) [GroupWeight]
 FROM Warehouse.StockItems si
 ORDER BY si.StockItemName;
