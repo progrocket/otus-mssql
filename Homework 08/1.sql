@@ -35,11 +35,11 @@ FROM
               InvoiceMonth = FORMAT(DATEADD(MM, DATEDIFF(MM, 0, I.InvoiceDate), 0), 'dd.MM.yyyy')
           ) AS Dates
      WHERE C.CustomerID BETWEEN 2 AND 6
-     ) AS D PIVOT(COUNT(I.[InvoiceID]) FOR D.SpecName IN(
+     ) AS D PIVOT(COUNT(D.[InvoiceID]) FOR D.SpecName IN(
     [Sylvanite, MT], 
     [Peeples Valley, AZ], 
     [Medicine Lodge, KS], 
     [Gasport, NY], 
     [Jessie, ND])) AS P
 ORDER BY 
-    CAST(InvoiceMonth AS DATE);
+    CAST(P.InvoiceMonth AS DATE);
