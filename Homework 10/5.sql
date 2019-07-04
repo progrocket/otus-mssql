@@ -12,7 +12,7 @@ DECLARE @CustomerNames NVARCHAR(MAX);
 SET @CustomerNames =
 (
     SELECT
-			'[' + c.CustomerName + ']' + ', ' as 'data()'
+			'[' + c.CustomerName + ']' + ',' as 'data()'
 	FROM
 		(
 			SELECT DISTINCT CustomerName
@@ -20,6 +20,11 @@ SET @CustomerNames =
 		) c
 	FOR XML PATH ('')
 );
+
+IF @CustomerNames IS NOT NULL
+BEGIN
+	SET @CustomerNames = LEFT(@CustomerNames, LEN(@CustomerNames) - 1);
+END
 
 --PRINT @CustomerNames
 
