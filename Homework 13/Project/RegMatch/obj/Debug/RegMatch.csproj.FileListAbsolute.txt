@@ -1,0 +1,5 @@
+D:\SqlExtensions\RegMatch\bin\Debug\RegMatch.dll
+D:\SqlExtensions\RegMatch\bin\Debug\RegMatch.pdb
+D:\SqlExtensions\RegMatch\obj\Debug\RegMatch.csproj.CoreCompileInputs.cache
+D:\SqlExtensions\RegMatch\obj\Debug\RegMatch.dll
+D:\SqlExtensions\RegMatch\obj\Debug\RegMatch.pdb
