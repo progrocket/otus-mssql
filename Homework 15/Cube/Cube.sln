@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "WideWorldImporters", "Cube\WideWorldImporters.dwproj", "{BDDC8109-1F0A-4B25-9729-2D1C3130039E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDDC8109-1F0A-4B25-9729-2D1C3130039E}.Development|Default.ActiveCfg = Development
+		{BDDC8109-1F0A-4B25-9729-2D1C3130039E}.Development|Default.Build.0 = Development
+		{BDDC8109-1F0A-4B25-9729-2D1C3130039E}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF91228C-C8B3-478E-9C4A-EEB60BCE9877}
+	EndGlobalSection
+EndGlobal
