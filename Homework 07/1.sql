@@ -1,4 +1,4 @@
--- Temp table
+п»ї-- Temp table
 
 CREATE TABLE #EmployeeReport (PersonId INT PRIMARY KEY, FullName NVARCHAR(MAX), OrdersCount INT);
 
@@ -31,5 +31,5 @@ FROM @EmployeeReport er;
 SELECT * FROM @EmployeeReport er;
 
 
--- В данных тестах быстрее работает Table Variable. 
--- Скорее всего сказывается маленькое количество данных. Как я помню из лекции - до 100 записей - лучше table variable, больше - temp table.
+-- Р’ РґР°РЅРЅС‹С… С‚РµСЃС‚Р°С… Р±С‹СЃС‚СЂРµРµ СЂР°Р±РѕС‚Р°РµС‚ Table Variable. 
+-- РЎРєРѕСЂРµРµ РІСЃРµРіРѕ СЃРєР°Р·С‹РІР°РµС‚СЃСЏ РјР°Р»РµРЅСЊРєРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…. РљР°Рє СЏ РїРѕРјРЅСЋ РёР· Р»РµРєС†РёРё - РґРѕ 100 Р·Р°РїРёСЃРµР№ - Р»СѓС‡С€Рµ table variable, Р±РѕР»СЊС€Рµ - temp table.
